@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
+import Image from "next/image";
 
 let isFirstLoad = true;
 
@@ -93,12 +94,20 @@ export function Preloader() {
   return (
     <div
       ref={overlayRef}
-      className="fixed inset-0 z-[100] bg-[#0e0e0f] flex flex-col items-center justify-center">
-      <div className="relative overflow-hidden">
-        <h1
-          ref={textRef}
-          className="font-display md:text-5xl whitespace-nowrap text-3xl font-bold tracking-tighter text-white uppercase">
-          The Kinetic Curator
+      className="fixed inset-0 z-100 bg-[#0e0e0f] flex flex-col items-center justify-center">
+      <div
+        ref={textRef}
+        className="flex flex-col items-center justify-center gap-6">
+        <Image
+          src="/logo_viakrit.webp"
+          height={100}
+          width={106}
+          alt="Viakrit Logo"
+          className="object-contain"
+          priority
+        />
+        <h1 className="font-display md:text-5xl whitespace-nowrap object-contain text-3xl font-bold tracking-tighter text-center text-white uppercase">
+          VIAKRIT EVENTS
         </h1>
       </div>
     </div>

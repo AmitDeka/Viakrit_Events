@@ -5,6 +5,7 @@ import gsap from "gsap";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import BookingSystem from "@/components/BookingSystem";
+import { SEO } from "@/components/SEO";
 import { MapPin, Landmark } from "lucide-react";
 
 export default function Contact() {
@@ -25,7 +26,13 @@ export default function Contact() {
   }, []);
 
   return (
-    <div ref={container} className="flex-1 w-full">
+    <>
+      <SEO 
+        title="Contact"
+        description="Get in touch with Viakrit Events to start building your next high-performance brand experience or event."
+        keywords="contact viakrit, event booking, schedule consultation, brand experience, viakrit events hq"
+      />
+      <div ref={container} className="flex-1 w-full">
       {/* Hero */}
       <section className="md:pt-48 md:pb-32 container flex flex-col justify-center px-6 pt-40 pb-20 mx-auto mb-16">
         <div className="md:flex-row md:items-end reveal-element flex flex-col items-start justify-between gap-8">
@@ -201,5 +208,6 @@ export default function Contact() {
         </div>
       </section>
     </div>
+    </>
   );
 }

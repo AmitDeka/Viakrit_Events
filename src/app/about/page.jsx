@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
+import { SEO } from "@/components/SEO";
 
 const curatorsData = [
   {
@@ -54,7 +55,13 @@ export default function About() {
   }, []);
 
   return (
-    <div ref={container} className="flex-1 w-full">
+    <>
+      <SEO 
+        title="About Us"
+        description="Learn about Viakrit Events, our mission, our manifesto, and the curators behind our high-performance kinetic experiences."
+        keywords="about viakrit, event architects, julian vance, elena rostova, marcus thorne, kinetic manifesto"
+      />
+      <div ref={container} className="flex-1 w-full">
       {/* Hero Section */}
       <section className="container mx-auto px-6 pt-40 md:pt-48 pb-20 md:pb-32 min-h-[85vh] grid grid-cols-1 lg:grid-cols-12 gap-12 items-center mb-32">
         <div className="lg:col-span-8 flex flex-col justify-center">
@@ -226,5 +233,6 @@ export default function About() {
         </div>
       </section>
     </div>
+    </>
   );
 }
