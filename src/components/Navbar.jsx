@@ -79,7 +79,7 @@ export function Navbar() {
             <Link
               href="/"
               onClick={handleNavClick}
-              className="font-display md:text-xl hover:opacity-80 whitespace-nowrap z-10 text-lg font-bold tracking-tight text-white transition-opacity">
+              className="font-display md:text-xl hover:opacity-80 whitespace-nowrap z-10 text-lg font-bold tracking-wider text-white transition-opacity">
               VIAKRIT EVENTS
             </Link>
           </div>

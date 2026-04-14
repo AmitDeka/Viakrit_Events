@@ -106,7 +106,7 @@ export function Preloader() {
           className="object-contain"
           priority
         />
-        <h1 className="font-display md:text-5xl whitespace-nowrap object-contain text-3xl font-bold tracking-tighter text-center text-white uppercase">
+        <h1 className="font-display md:text-5xl whitespace-nowrap object-contain text-3xl font-bold tracking-wider text-center text-white uppercase">
           VIAKRIT EVENTS
         </h1>
       </div>
