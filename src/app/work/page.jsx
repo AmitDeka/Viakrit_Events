@@ -103,7 +103,7 @@ function AnimatedCategory({ categoryData, index }) {
         opacity: 0,
         duration: 1,
         ease: "power3.out",
-        delay: (index % 2) * 0.15, // Slight stagger for items loading in pairs
+        delay: (index % 2) * 0.15,
       });
     }, compRef);
     return () => ctx.revert();
@@ -162,7 +162,6 @@ export default function Work() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Only animate the hero header globally
       gsap.from(".header-text", {
         y: 20,
         opacity: 0,

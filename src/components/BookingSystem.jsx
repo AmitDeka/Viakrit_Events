@@ -247,16 +247,15 @@ export default function BookingSystem() {
             {times
               .filter((t) => {
                 if (!isSameDay(selectedDate, new Date())) return true;
-                
-                // Convert "09:00 AM" to a Date object for comparison
+
                 const [time, modifier] = t.split(" ");
                 let [hours, minutes] = time.split(":").map(Number);
                 if (modifier === "PM" && hours < 12) hours += 12;
                 if (modifier === "AM" && hours === 12) hours = 0;
-                
+
                 const slotTime = new Date();
                 slotTime.setHours(hours, minutes, 0, 0);
-                
+
                 return isBefore(new Date(), slotTime);
               })
               .map((t) => (

@@ -20,7 +20,6 @@ export function Navbar() {
   const menuRef = useRef(null);
   const linksRef = useRef([]);
 
-  // Fix Next.js and scroll-smooth clash by disabling it temporarily on navigate
   const handleNavClick = () => {
     document.documentElement.classList.remove("scroll-smooth");
     setTimeout(() => {
@@ -29,10 +28,8 @@ export function Navbar() {
     closeMenu();
   };
 
-  // Animation for Mobile Menu
   useEffect(() => {
     if (isOpen) {
-      // Open Animation
       gsap.fromTo(
         menuRef.current,
         { x: "-100%", opacity: 0 },
@@ -64,7 +61,7 @@ export function Navbar() {
 
   return (
     <>
-      <nav className="fixed top-0 w-full z-[60] glass-panel border-b ghost-border backdrop-blur-md">
+      <nav className="z-60 glass-panel ghost-border backdrop-blur-md fixed top-0 w-full border-b">
         <div className="md:h-20 container flex items-center justify-between h-16 px-6 mx-auto">
           {/* Left Side: Hamburger + Logo */}
           <div className="flex items-center flex-1 gap-4">
