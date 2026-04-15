@@ -12,6 +12,8 @@ import {
   Video,
   Megaphone,
   Layers,
+  ArrowLeftIcon,
+  ArrowRightIcon,
 } from "lucide-react";
 import Link from "next/link";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -23,6 +25,7 @@ import {
 import Autoplay from "embla-carousel-autoplay";
 import { useRouter } from "next/navigation";
 import { SEO } from "@/components/SEO";
+import { FEATURED_PROJECTS } from "@/lib/workData";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
@@ -31,6 +34,7 @@ if (typeof window !== "undefined") {
 export default function Home() {
   const container = useRef(null);
   const [api, setApi] = React.useState();
+  const [workApi, setWorkApi] = React.useState();
   const router = useRouter();
 
   useEffect(() => {
@@ -162,14 +166,14 @@ export default function Home() {
 
           <div className="md:grid-cols-12 grid grid-cols-1 gap-6">
             {/* Live Events (Left, Large) */}
-            <div className="md:col-span-7 surface-container border ghost-border p-8 md:p-12 min-h-[20rem] md:min-h-[26rem] flex flex-col justify-between items-start relative ambient-lift group overflow-hidden bg-[#0e0e0f]">
+            <div className="md:col-span-7 surface-container border ghost-border p-8 md:p-12 min-h-80 md:min-h-104 flex flex-col justify-between items-start relative ambient-lift group overflow-hidden bg-[#0e0e0f]">
               <div
                 className="opacity-40 mix-blend-screen group-hover:scale-105 absolute top-0 left-0 z-0 w-full h-full transition-transform duration-1000 bg-center bg-cover"
                 style={{
                   backgroundImage:
                     "url('https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&q=80')",
                 }}></div>
-              <div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-tr from-[#0e0e0f] via-[#0e0e0f]/80 to-transparent z-0"></div>
+              <div className="absolute inset-0 bg-linear-to-t md:bg-linear-to-tr from-[#0e0e0f] via-[#0e0e0f]/80 to-transparent z-0"></div>
 
               <Landmark className="md:w-10 md:h-10 text-primary relative z-10 w-8 h-8" />
               <div className="relative z-10">
@@ -222,7 +226,7 @@ export default function Home() {
                   backgroundImage:
                     "url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&q=80')",
                 }}></div>
-              <div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-[#0e0e0f] via-[#0e0e0f]/90 to-transparent z-10"></div>
+              <div className="absolute inset-0 bg-linear-to-t md:bg-linear-to-r from-[#0e0e0f] via-[#0e0e0f]/90 to-transparent z-10"></div>
 
               <Layers className="md:w-10 md:h-10 text-primary relative z-20 w-8 h-8" />
               <div className="relative z-20">
@@ -254,39 +258,55 @@ export default function Home() {
             </Link>
           </div>
 
-          <div className="md:grid-cols-2 relative z-10 grid grid-cols-1 gap-8">
-            <div>
-              <div className="aspect-[4/3] surface-container border ghost-border mb-4 md:mb-6 ambient-lift group overflow-hidden relative cursor-pointer">
-                <Image
-                  src="https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&q=80"
-                  alt="Synthesis 2024"
-                  fill
-                  className="opacity-60 group-hover:opacity-100 group-hover:scale-105 object-cover transition-all duration-700"
-                />
-              </div>
-              <h3 className="md:text-xl md:mb-2 mb-1 text-lg font-bold tracking-tight text-white">
-                The State/Synthesis 2024
-              </h3>
-              <p className="text-[10px] md:text-xs uppercase tracking-widest font-bold text-on_surface_variant">
-                LOGISTICS / TECHNICAL DESIGN
-              </p>
-            </div>
-            <div>
-              <div className="aspect-[4/3] surface-container border ghost-border mb-4 md:mb-6 ambient-lift group overflow-hidden relative cursor-pointer">
-                <Image
-                  src="https://images.unsplash.com/photo-1551818255-e6e10975bc17?auto=format&fit=crop&q=80"
-                  alt="Horizon Keynote"
-                  fill
-                  className="opacity-60 group-hover:opacity-100 group-hover:scale-105 object-cover transition-all duration-700"
-                />
-              </div>
-              <h3 className="md:text-xl md:mb-2 mb-1 text-lg font-bold tracking-tight text-white">
-                Horizon Virtual Keynote
-              </h3>
-              <p className="text-[10px] md:text-xs uppercase tracking-widest font-bold text-on_surface_variant">
-                VIRTUAL EVENT / 3D STRATEGY
-              </p>
-            </div>
+          <div className="relative z-10">
+            <Carousel
+              setApi={setWorkApi}
+              className="w-full"
+              opts={{ align: "start", loop: true }}>
+              <CarouselContent className="-ml-6">
+                {FEATURED_PROJECTS.map((project) => (
+                  <CarouselItem key={project.id} className="md:basis-1/2 pl-6">
+                    <Link href="/work" className="group block cursor-pointer">
+                      <div className="aspect-video surface-container ghost-border md:mb-6 ambient-lift relative mb-4 overflow-hidden border">
+                        <Image
+                          src={project.image}
+                          alt={project.title}
+                          fill
+                          className="opacity-60 group-hover:opacity-100 group-hover:scale-105 object-cover transition-all duration-700"
+                        />
+                      </div>
+                      {project.subtitle && project.subtitle !== "TBA" && (
+                        <p className="text-[10px] md:text-xs uppercase tracking-widest font-bold text-primary mb-1">
+                          {project.subtitle}
+                        </p>
+                      )}
+                      <h3 className="md:text-xl md:mb-2 mb-1 text-lg font-bold tracking-tight text-white">
+                        {project.title}
+                      </h3>
+                      <p className="text-[10px] md:text-xs uppercase tracking-widest font-bold text-on_surface_variant">
+                        {project.category}
+                      </p>
+                    </Link>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+            </Carousel>
+
+            {/* Floating Prev — left edge over the image */}
+            <button
+              onClick={() => workApi?.scrollPrev()}
+              aria-label="Previous project"
+              className="top-1/2 bg-black/60 hover:bg-primary hover:text-black backdrop-blur-sm border-white/20 -left-4 absolute z-20 flex items-center justify-center w-10 h-10 text-white transition-all duration-200 -translate-y-1/2 border rounded-sm cursor-pointer">
+              <ArrowLeftIcon className="w-4 h-4" />
+            </button>
+
+            {/* Floating Next — right edge over the image */}
+            <button
+              onClick={() => workApi?.scrollNext()}
+              aria-label="Next project"
+              className="top-1/2 bg-black/60 hover:bg-primary hover:text-black backdrop-blur-sm border-white/20 -right-4 absolute z-20 flex items-center justify-center w-10 h-10 text-white transition-all duration-200 -translate-y-1/2 border rounded-sm cursor-pointer">
+              <ArrowRightIcon className="w-4 h-4" />
+            </button>
           </div>
         </section>
 
@@ -303,12 +323,12 @@ export default function Home() {
               <button
                 onClick={() => api?.scrollPrev()}
                 className="text-on_surface_variant hover:text-white bg-surface-container ghost-border p-2 transition-colors border rounded-sm cursor-pointer">
-                ←
+                <ArrowLeftIcon className="w-4 h-4" />
               </button>
               <button
                 onClick={() => api?.scrollNext()}
                 className="text-on_surface_variant hover:text-white bg-surface-container ghost-border p-2 transition-colors border rounded-sm cursor-pointer">
-                →
+                <ArrowRightIcon className="w-4 h-4" />
               </button>
             </div>
           </div>

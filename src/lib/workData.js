@@ -107,6 +107,7 @@ export const WORK_CATEGORIES = [
         subtitle: "GAIL / ONGC / TNGCL / NIT",
         image:
           "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&q=80",
+        isFeatured: true,
       },
       {
         id: "psu-2",
@@ -114,6 +115,7 @@ export const WORK_CATEGORIES = [
         subtitle: "TBA",
         image:
           "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&q=80",
+        isFeatured: true,
       },
       {
         id: "psu-3",
@@ -137,9 +139,10 @@ export const WORK_CATEGORIES = [
       {
         id: "gov-2",
         title: "Swachh Bharat campaign activations",
-        subtitle: "TBA",
+        subtitle: "Government Departments",
         image:
           "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&q=80",
+        isFeatured: true,
       },
       {
         id: "gov-3",
@@ -171,9 +174,10 @@ export const WORK_CATEGORIES = [
       {
         id: "college-1",
         title: "Artist management for campus programs",
-        subtitle: "TBA",
+        subtitle: "Campus Events",
         image:
           "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&q=80",
+        isFeatured: true,
       },
       {
         id: "college-2",
@@ -190,9 +194,10 @@ export const WORK_CATEGORIES = [
       {
         id: "media-1",
         title: "Videography",
-        subtitle: "TBA",
+        subtitle: "Media Production",
         image:
           "https://images.unsplash.com/photo-1492724441997-5dc865305da7?auto=format&fit=crop&q=80",
+        isFeatured: true,
       },
       {
         id: "media-2",
@@ -233,6 +238,7 @@ export const WORK_CATEGORIES = [
         subtitle: "IP Development",
         image:
           "https://images.unsplash.com/photo-1459749411175-04bf5292ceea?auto=format&fit=crop&q=80",
+        isFeatured: true,
       },
       {
         id: "ip-2",
@@ -270,9 +276,10 @@ export const WORK_CATEGORIES = [
       {
         id: "brand-1",
         title: "Automobile showroom inaugurations",
-        subtitle: "TBA",
+        subtitle: "Brand Launches",
         image:
           "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&q=80",
+        isFeatured: true,
       },
       {
         id: "brand-2",
@@ -303,3 +310,12 @@ export const WORK_CATEGORIES = [
     ],
   },
 ];
+
+// Flat list of all projects where isFeatured === true.
+// Used by the home page "Selected Projects" slider.
+// To feature a project: add  isFeatured: true  to its object above.
+export const FEATURED_PROJECTS = WORK_CATEGORIES.flatMap((cat) =>
+  cat.projects
+    .filter((p) => p.isFeatured)
+    .map((p) => ({ ...p, category: cat.category })),
+);
